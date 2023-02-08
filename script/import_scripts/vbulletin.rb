@@ -50,7 +50,7 @@ class ImportScripts::VBulletin < ImportScripts::Base
       password: DB_PW,
       database: DB_NAME
     )
-    rescue Exception => e
+    rescue StandardError => e
       puts '=' * 50
       puts e.message
       puts <<~TEXT
@@ -197,7 +197,7 @@ class ImportScripts::VBulletin < ImportScripts::Base
         SQL
 
         Group.reset_counters(group.id, :group_users)
-      rescue Exception => e
+      rescue StandardError => e
         puts e.message
         puts e.backtrace.join("\n")
       end

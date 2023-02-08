@@ -116,7 +116,7 @@ RequireProfiler.profile do
   Bundler.definition.dependencies.each do |dep|
     begin
       require dep.name
-    rescue Exception
+    rescue StandardError
       # don't care
     end
   end

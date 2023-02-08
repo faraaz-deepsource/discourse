@@ -91,7 +91,7 @@ module Email
           raise BouncedEmailError if is_bounce?
 
           post
-        rescue Exception => e
+        rescue StandardError => e
           @incoming_email.update_columns(error: e.class.name) if @incoming_email
           delete_created_staged_users
           raise
