@@ -251,7 +251,7 @@ class Report
       rescue ActiveRecord::QueryCanceled, PG::QueryCanceled => e
         report.error = :timeout
       end
-    rescue Exception => e
+    rescue StandardError => e
       # In test mode, don't swallow exceptions by default to help debug errors.
       raise if Rails.env.test? && !opts[:wrap_exceptions_in_test]
 

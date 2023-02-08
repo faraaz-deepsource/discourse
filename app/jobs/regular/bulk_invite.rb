@@ -55,7 +55,7 @@ module Jobs
           @failed += 1
         end
       end
-    rescue Exception => e
+    rescue StandardError => e
       save_log "Bulk Invite Process Failed -- '#{e.message}'"
       @failed += 1
     end

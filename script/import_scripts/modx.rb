@@ -40,7 +40,7 @@ class ImportScripts::Modx < ImportScripts::Base
       password: DB_PW,
       database: DB_NAME
     )
-  rescue Exception => e
+  rescue StandardError => e
     puts '=' * 50
     puts e.message
     puts <<~TEXT
