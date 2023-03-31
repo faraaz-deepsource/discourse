@@ -41,7 +41,7 @@ module Jobs
             crawled = (TopicLink.where(id: topic_link.id).update_all(['title = ?, crawled_at = CURRENT_TIMESTAMP', title[0..254]]) == 1)
           end
         end
-      rescue Exception
+      rescue StandardError
         # If there was a connection error, do nothing
       ensure
         TopicLink.where(id: topic_link.id).update_all('crawled_at = CURRENT_TIMESTAMP') if !crawled && topic_link.present?
