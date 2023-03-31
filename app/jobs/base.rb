@@ -104,7 +104,7 @@ module Jobs
           @@log_thread = Thread.new do
             loop do
               @@logger << @@log_queue.pop
-            rescue Exception => e
+            rescue StandardError => e
               Discourse.warn_exception(e, message: "Exception encountered while logging Sidekiq job")
             end
           end
@@ -144,7 +144,7 @@ module Jobs
                 @@active_jobs.each { |j| j.write_to_log if j.current_duration > interval }
               end
             end
-          rescue Exception => e
+          rescue StandardError => e
             Discourse.warn_exception(e, message: "Sidekiq interval logging thread terminated unexpectedly")
           end
         end

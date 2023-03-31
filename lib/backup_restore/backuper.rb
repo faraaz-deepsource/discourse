@@ -44,7 +44,7 @@ module BackupRestore
       after_create_hook
     rescue SystemExit
       log "Backup process was cancelled!"
-    rescue Exception => ex
+    rescue StandardError => ex
       log "EXCEPTION: " + ex.message
       log ex.backtrace.join("\n")
       @success = false
